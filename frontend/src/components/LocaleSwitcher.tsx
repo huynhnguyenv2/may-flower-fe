@@ -1,0 +1,46 @@
+"use client";
+
+import { useLocale } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { setLocale } from "@/i18n/actions";
+import type { Locale } from "@/i18n/config";
+
+export function LocaleSwitcher() {
+  const locale = useLocale() as Locale;
+  const router = useRouter();
+  const [pending, startTransition] = useTransition();
+
+  function onSelect(next: Locale) {
+    if (next === locale || pending) return;
+    startTransition(async () => {
+      await setLocale(next);
+      router.refresh();
+    });
+  }
+
+  return (
+    <div
+      className="flex rounded-full border border-umber/20 bg-white/80 p-0.5 text-xs font-medium"
+      role="group"
+      aria-label="Language"
+    >
+      {(["vi", "en"] as const).map((code) => (
+        <button
+          key={code}
+          type="button"
+          disabled={pending}
+          onClick={() => onSelect(code)}
+          className={`min-w-[2.25rem] rounded-full px-2 py-1 transition-colors ${
+            locale === code
+              ? "bg-umber text-white shadow-sm"
+              : "text-ink/70 hover:text-umber"
+          }`}
+          aria-pressed={locale === code}
+        >
+          {code.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  );
+}

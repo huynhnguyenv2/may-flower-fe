@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "siteTitle": "May Flower — Studio hoa hiểu con người",
+    "siteDescription": "Chọn hoa theo cảm xúc — studio hoa cao cấp tại Đà Nẵng."
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "collections": "Bộ sưu tập",
+    "concierge": "Tìm hoa cho bạn",
+    "journal": "Nhật ký",
+    "cart": "Giỏ hàng"
+  },
+  "home": {
+    "studioTag": "May Flower Studio · Đà Nẵng",
+    "heroTitle": "Studio hoa hiểu con người",
+    "heroSubtitle": "Chọn theo cảm xúc — giao tận tay tại Đà Nẵng.",
+    "ctaConcierge": "Tìm hoa cho bạn",
+    "ctaCollections": "Xem bộ sưu tập",
+    "emotionalTitle": "Hoa theo cảm xúc",
+    "featuredTitle": "Bó hoa nổi bật",
+    "storyTitle": "Câu chuyện May Flower",
+    "storyBody": "Studio tại Đà Nẵng — từ Cầu Rồng tới Mỹ Khê, chúng tôi gói từng bó như một lời nhắn: dịu dàng, chân thành, đúng người nhận. Hoa cho tiệc cưới, sinh nhật, hay chỉ vì thương."
+  },
+  "collections": {
+    "title": "Bộ sưu tập",
+    "subtitle": "Khám phá theo cảm xúc, chữ ký studio, hoặc mùa hoa."
+  },
+  "cart": {
+    "title": "Giỏ hàng",
+    "empty": "Giỏ trống.",
+    "explore": "Khám phá bộ sưu tập",
+    "subtotal": "Tạm tính",
+    "checkout": "Thanh toán"
+  },
+  "journal": {
+    "title": "Nhật ký & câu chuyện",
+    "subtitle": "Câu chuyện hoa và Đà Nẵng quanh chúng tôi.",
+    "post1Title": "Hoa hồng không chỉ là tình yêu",
+    "post1Excerpt": "Chọn sắc hồng phù hợp cảm xúc bạn muốn gửi.",
+    "post2Title": "Giữ hoa tươi lâu hơn ở nhà",
+    "post2Excerpt": "Vài thói quen nhỏ từ studio — gần biển Mỹ Khê."
+  },
+  "concierge": {
+    "title": "Tìm hoa cho bạn",
+    "description": "Gợi ý bó hoa từ catalog thật — theo cảm xúc và ngân sách.",
+    "introTitle": "AI Flower Concierge",
+    "introBody": "Vài câu hỏi nhẹ — gợi ý từ catalog thật, giá và tồn kho minh bạch.",
+    "start": "Bắt đầu",
+    "recipientLabel": "Hoa này gửi cho ai?",
+    "occasionLabel": "Dịp gì?",
+    "feelingLabel": "Cảm xúc bạn muốn gửi gắm",
+    "budgetLabel": "Ngân sách (VND)",
+    "continue": "Tiếp tục",
+    "seeSuggestions": "Xem gợi ý",
+    "loading": "Đang gợi ý…",
+    "resultsTitle": "Gợi ý cho bạn",
+    "noResults": "Chưa có sản phẩm phù hợp ngân sách. Thử tăng ngân sách nhé.",
+    "viewDetail": "Xem chi tiết",
+    "feelings": {
+      "nho-ban": "Nhớ bạn",
+      "cam-on": "Cảm ơn",
+      "mung": "Mừng",
+      "xin-loi": "Xin lỗi",
+      "vi-thuong": "Vì thương"
+    }
+  },
+  "footer": {
+    "tagline": "Đà Nẵng · Giao hoa theo cảm xúc",
+    "districts": "Hải Châu · Sơn Trà · Ngũ Hành Sơn · Thanh Khê · Cẩm Lệ · Liên Chiểu · Hòa Vang",
+    "copyright": "© {year} May Flower"
+  },
+  "product": {
+    "from": "Từ",
+    "addToCart": "Thêm vào giỏ",
+    "addedToCart": "Đã thêm vào giỏ",
+    "availability": {
+      "available": "Còn hàng",
+      "limited": "Sắp hết",
+      "unavailable": "Hết hàng"
+    }
+  },
+  "checkout": {
+    "title": "Thanh toán",
+    "deliveryHint": "Giao trong {city} — chọn khu vực gần địa điểm người nhận.",
+    "yourInfo": "Thông tin bạn",
+    "recipient": "Người nhận",
+    "delivery": "Giao hàng",
+    "name": "Họ tên",
+    "phone": "Số điện thoại",
+    "emailOptional": "Email (tuỳ chọn)",
+    "recipientName": "Họ tên người nhận",
+    "recipientPhone": "Số điện thoại người nhận",
+    "addressPlaceholder": "Số nhà, đường — VD: 123 Bạch Đằng, gần Cầu Rồng",
+    "city": "Thành phố",
+    "deliveryNote": "Ghi chú giao hàng (công ty, lễ tân, giờ hẹn…)",
+    "messageCard": "Lời nhắn trên thiệp",
+    "landmarkHint": "Gợi ý địa điểm",
+    "landmarksShort": "Cầu Rồng · Mỹ Khê · Chợ Hàn · Ngũ Hành Sơn · Sân bay Đà Nẵng",
+    "slotPlaceholder": "Chọn khung giờ",
+    "subtotal": "Tạm tính",
+    "deliveryFee": "Phí giao",
+    "total": "Tổng",
+    "devPaymentNote": "Chế độ dev: thanh toán bỏ qua (PAYMENT_MODE=dev_skip).",
+    "submit": "Đặt hàng",
+    "submitting": "Đang xử lý…",
+    "success": "Đặt hàng thành công",
+    "emptyCart": "Giỏ hàng trống.",
+    "pickSlot": "Chọn khung giờ giao",
+    "orderError": "Không thể đặt hàng"
+  }
+}

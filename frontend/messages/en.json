@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "siteTitle": "May Flower — A studio that understands people",
+    "siteDescription": "Choose flowers by feeling — premium studio in Da Nang, Vietnam."
+  },
+  "nav": {
+    "home": "Home",
+    "collections": "Collections",
+    "concierge": "Find your flowers",
+    "journal": "Journal",
+    "cart": "Cart"
+  },
+  "home": {
+    "studioTag": "May Flower Studio · Da Nang",
+    "heroTitle": "A studio that understands people",
+    "heroSubtitle": "Choose by feeling — hand-delivered across Da Nang.",
+    "ctaConcierge": "Find your flowers",
+    "ctaCollections": "Browse collections",
+    "emotionalTitle": "Flowers as a feeling",
+    "featuredTitle": "Featured bouquets",
+    "storyTitle": "The May Flower story",
+    "storyBody": "Based in Da Nang — from Dragon Bridge to My Khe Beach, we wrap each bouquet like a message: gentle, sincere, and meant for your recipient. Weddings, birthdays, or just because."
+  },
+  "collections": {
+    "title": "Collections",
+    "subtitle": "Explore by emotion, studio signatures, or seasonal blooms."
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty.",
+    "explore": "Browse collections",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout"
+  },
+  "journal": {
+    "title": "Journal & stories",
+    "subtitle": "Flowers and Da Nang, from our studio.",
+    "post1Title": "Roses aren't only about romance",
+    "post1Excerpt": "Pick the pink that matches the feeling you want to send.",
+    "post2Title": "Keep cut flowers fresh at home",
+    "post2Excerpt": "Small studio habits — living near My Khe Beach."
+  },
+  "concierge": {
+    "title": "Find your flowers",
+    "description": "Real catalog recommendations — by feeling and budget.",
+    "introTitle": "AI Flower Concierge",
+    "introBody": "A few gentle questions — real catalog picks with clear pricing and stock.",
+    "start": "Get started",
+    "recipientLabel": "Who is this for?",
+    "occasionLabel": "What's the occasion?",
+    "feelingLabel": "What feeling should it carry?",
+    "budgetLabel": "Budget (VND)",
+    "continue": "Continue",
+    "seeSuggestions": "See suggestions",
+    "loading": "Finding picks…",
+    "resultsTitle": "Suggested for you",
+    "noResults": "Nothing in budget yet — try raising your budget a little.",
+    "viewDetail": "View details",
+    "feelings": {
+      "nho-ban": "Missing you",
+      "cam-on": "Thank you",
+      "mung": "Celebrate",
+      "xin-loi": "I'm sorry",
+      "vi-thuong": "Just because"
+    }
+  },
+  "footer": {
+    "tagline": "Da Nang · Flowers with feeling",
+    "districts": "Hai Chau · Son Tra · Ngu Hanh Son · Thanh Khe · Cam Le · Lien Chieu · Hoa Vang",
+    "copyright": "© {year} May Flower"
+  },
+  "product": {
+    "from": "From",
+    "addToCart": "Add to cart",
+    "addedToCart": "Added to cart",
+    "availability": {
+      "available": "In stock",
+      "limited": "Limited",
+      "unavailable": "Out of stock"
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "deliveryHint": "Delivery in {city} — pick the zone closest to the recipient.",
+    "yourInfo": "Your details",
+    "recipient": "Recipient",
+    "delivery": "Delivery",
+    "name": "Full name",
+    "phone": "Phone number",
+    "emailOptional": "Email (optional)",
+    "recipientName": "Recipient name",
+    "recipientPhone": "Recipient phone",
+    "addressPlaceholder": "Street address — e.g. 123 Bach Dang, near Dragon Bridge",
+    "city": "City",
+    "deliveryNote": "Delivery notes (lobby, office, preferred time…)",
+    "messageCard": "Message card",
+    "landmarkHint": "Landmark ideas",
+    "landmarksShort": "Dragon Bridge · My Khe Beach · Han Market · Marble Mountains · Da Nang Airport",
+    "slotPlaceholder": "Choose a time slot",
+    "subtotal": "Subtotal",
+    "deliveryFee": "Delivery fee",
+    "total": "Total",
+    "devPaymentNote": "Dev mode: payment skipped (PAYMENT_MODE=dev_skip).",
+    "submit": "Place order",
+    "submitting": "Processing…",
+    "success": "Order placed",
+    "emptyCart": "Your cart is empty.",
+    "pickSlot": "Choose a delivery time slot",
+    "orderError": "Could not place order"
+  }
+}
