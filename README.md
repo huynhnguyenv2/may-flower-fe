@@ -2,7 +2,7 @@
 
 Next.js public site (`frontend/`). Calls the API at `NEXT_PUBLIC_API_URL` (default `/v1` on the backend).
 
-Companion API repo: [may-flower-be](https://github.com/huynhnguyenv2/may-flower-be).
+API: sibling [`../may-flower-be/`](../may-flower-be/) · GitHub [may-flower-be](https://github.com/huynhnguyenv2/may-flower-be). Planning docs: [`../`](../) (workspace root).
 
 ## Prerequisites
 
