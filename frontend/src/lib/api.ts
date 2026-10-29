@@ -16,7 +16,7 @@ import {
 } from "@may-flower/shared";
 import { z } from "zod";
 
-const base = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001/v1";
+const base = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3101/v1";
 
 async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${base}${path}`, {
