@@ -17,8 +17,14 @@ export function RefineRoot({ children }: { children: React.ReactNode }) {
       notificationProvider={useNotificationProvider}
       resources={[
         {
+          name: "dashboard",
+          list: "/admin/dashboard",
+          meta: { label: "Tổng quan" },
+        },
+        {
           name: "orders",
           list: "/admin/orders",
+          show: "/admin/orders/show/:id",
           meta: { label: "Đơn hàng" },
         },
         {
@@ -28,9 +34,34 @@ export function RefineRoot({ children }: { children: React.ReactNode }) {
           meta: { label: "Yêu cầu AI Florist" },
         },
         {
+          name: "inventory",
+          list: "/admin/inventory",
+          meta: { label: "Tồn kho" },
+        },
+        {
           name: "products",
           list: "/admin/products",
           meta: { label: "Sản phẩm" },
+        },
+        {
+          name: "flowers",
+          list: "/admin/flowers",
+          create: "/admin/flowers/create",
+          edit: "/admin/flowers/edit/:id",
+          meta: { label: "Hoa & nguyên liệu" },
+        },
+        {
+          name: "addons",
+          list: "/admin/addons",
+          create: "/admin/addons/create",
+          edit: "/admin/addons/edit/:id",
+          meta: { label: "Add-on" },
+        },
+        {
+          name: "customers",
+          list: "/admin/customers",
+          show: "/admin/customers/show/:id",
+          meta: { label: "Khách hàng" },
         },
         {
           name: "support-sessions",

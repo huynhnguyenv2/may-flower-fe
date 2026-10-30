@@ -2,7 +2,9 @@
 
 import { List, useTable } from "@refinedev/antd";
 import { useNavigation } from "@refinedev/core";
-import { Space, Table, Tag } from "antd";
+import { Space, Table } from "antd";
+import { CustomRequestStatusTag } from "@/admin/components/StatusTags";
+import { formatVnd } from "@/admin/format";
 
 export default function AdminCustomOrderRequestsPage() {
   const { show } = useNavigation();
@@ -26,11 +28,16 @@ export default function AdminCustomOrderRequestsPage() {
           dataIndex="status"
           title="Trạng thái"
           width={140}
-          render={(v: string) => <Tag color="gold">{v}</Tag>}
+          render={(v: string) => <CustomRequestStatusTag status={v} />}
         />
         <Table.Column dataIndex="customerName" title="Khách" />
         <Table.Column dataIndex="customerPhone" title="SĐT" width={120} />
-        <Table.Column dataIndex="totalVnd" title="Tổng ước tính" width={130} />
+        <Table.Column
+          dataIndex="totalVnd"
+          title="Tổng ước tính"
+          width={130}
+          render={(v: string) => formatVnd(v)}
+        />
         <Table.Column
           dataIndex="createdAt"
           title="Ngày gửi"

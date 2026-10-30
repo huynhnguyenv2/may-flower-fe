@@ -19,21 +19,33 @@ export const accessControlProvider: AccessControlProvider = {
     const canOrders = roles.some((r) =>
       ["owner", "manager", "florist", "delivery"].includes(r),
     );
+    const canFlorist = roles.some((r) => ["owner", "manager", "florist"].includes(r));
 
-    if (resource === "products") {
+    if (resource === "dashboard") {
+      return { can: canFlorist && action === "list" };
+    }
+    if (resource === "products" || resource === "inventory") {
       return { can: isOwnerOrManager && (action === "list" || action === "show") };
+    }
+    if (resource === "flowers" || resource === "addons") {
+      if (action === "list" || action === "show") return { can: canFlorist };
+      if (action === "create" || action === "edit" || action === "update") {
+        return { can: isOwnerOrManager };
+      }
+    }
+    if (resource === "customers") {
+      return { can: canFlorist && (action === "list" || action === "show") };
     }
     if (resource === "support-sessions") {
       return { can: isOwnerOrManager && (action === "list" || action === "show") };
     }
     if (resource === "custom-order-requests") {
       return {
-        can: roles.some((r) => ["owner", "manager", "florist"].includes(r)) &&
-          (action === "list" || action === "show"),
+        can: canFlorist && (action === "list" || action === "show" || action === "edit"),
       };
     }
     if (resource === "assistant") {
-      return { can: roles.some((r) => ["owner", "manager", "florist"].includes(r)) };
+      return { can: canFlorist };
     }
     if (resource === "orders") {
       if (action === "list" || action === "show") return { can: canOrders };
