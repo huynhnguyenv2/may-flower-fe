@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { BRAND } from "@/lib/brand";
 
 type Props = {
@@ -20,7 +20,7 @@ export function MayFlowerLogo({ className = "", showWordmark = true, size = 36 }
         src={BRAND.logoSrc}
         alt={BRAND.legalName}
         fill
-        className="object-contain p-0.5"
+        className="scale-[1.12] object-cover"
         sizes={`${size}px`}
         priority={size >= 34}
       />
