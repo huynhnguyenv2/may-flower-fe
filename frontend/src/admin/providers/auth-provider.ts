@@ -18,11 +18,14 @@ export const authProvider: AuthProvider = {
     const json = (await res.json()) as {
       data?: { accessToken: string; refreshToken: string };
       error?: { message?: string };
+      message?: string;
     };
     if (!res.ok || !json.data) {
+      const msg =
+        json.error?.message ?? json.message ?? `Đăng nhập thất bại (HTTP ${res.status})`;
       return {
         success: false,
-        error: { message: json.error?.message ?? "Đăng nhập thất bại", name: "LoginError" },
+        error: { message: msg, name: "LoginError" },
       };
     }
     localStorage.setItem(ADMIN_ACCESS_TOKEN_KEY, json.data.accessToken);
