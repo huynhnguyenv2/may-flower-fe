@@ -57,6 +57,7 @@ export const recommendationTierSchema = z.object({
   product: productSummarySchema,
   variantId: z.string(),
   priceVnd: moneyVndSchema,
+  rationale: z.string().optional(),
 });
 
 export const deliveryZoneSchema = z.object({

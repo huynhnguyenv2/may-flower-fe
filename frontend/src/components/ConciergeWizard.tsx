@@ -143,6 +143,9 @@ export function ConciergeWizard() {
                 <p className="text-xs uppercase tracking-widest text-umber">{r.tierLabel}</p>
                 <p className="font-display mt-1 text-xl">{r.product.name}</p>
                 <p className="text-sm text-ink/70">{r.product.story}</p>
+                {r.rationale ? (
+                  <p className="mt-2 text-sm italic text-ink/80">{r.rationale}</p>
+                ) : null}
                 <p className="mt-2 font-medium text-umber">{formatVnd(r.priceVnd)}</p>
                 <div className="mt-4 flex gap-3">
                   <Link

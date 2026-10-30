@@ -16,10 +16,19 @@ import {
 } from "@may-flower/shared";
 import { z } from "zod";
 
-const base = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3101/v1";
+function apiBaseUrl(): string {
+  const url = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+  if (url) return url;
+  if (process.env.VERCEL === "1" || process.env.NODE_ENV === "production") {
+    throw new Error(
+      "Missing NEXT_PUBLIC_API_URL. Set it in Vercel to your API, e.g. https://may-flower-be.onrender.com/v1",
+    );
+  }
+  return "http://localhost:3101/v1";
+}
 
 async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${base}${path}`, {
+  const res = await fetch(`${apiBaseUrl()}${path}`, {
     ...init,
     headers: {
       "Content-Type": "application/json",
@@ -60,6 +69,7 @@ export async function getProduct(slug: string): Promise<ProductDetail> {
 export async function createConciergeSession() {
   const json = await fetchJson<{ data: { id: string } }>("/concierge/sessions", {
     method: "POST",
+    body: "{}",
   });
   return json.data;
 }
