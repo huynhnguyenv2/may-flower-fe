@@ -13,14 +13,14 @@ type Props = {
 export function MayFlowerLogo({ className = "", showWordmark = true, size = 36 }: Props) {
   const mark = (
     <span
-      className="logo-mark-hover relative inline-block shrink-0 overflow-hidden rounded-full ring-1 ring-gold/40"
+      className="logo-mark-hover relative inline-block shrink-0 overflow-hidden rounded-full ring-1 ring-gold/40 bg-paper"
       style={{ width: size, height: size }}
     >
       <Image
         src={BRAND.logoSrc}
         alt={BRAND.legalName}
         fill
-        className="object-cover"
+        className="object-contain p-0.5"
         sizes={`${size}px`}
         priority={size >= 34}
       />

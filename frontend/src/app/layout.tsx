@@ -27,7 +27,10 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: t("siteDescription"),
     icons: {
-      icon: [{ url: "/logo-mark.jpg", type: "image/jpeg" }],
+      icon: [
+        { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+        { url: "/logo-icon.png", sizes: "512x512", type: "image/png" },
+      ],
       apple: [{ url: "/apple-touch-icon.png", type: "image/png" }],
     },
   };

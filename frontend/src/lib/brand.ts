@@ -5,5 +5,6 @@ export const BRAND = {
   legalName: "Nâu Fleur",
   instagramUrl: "https://www.instagram.com/nau.fleur/",
   facebookUrl: "https://www.facebook.com/nau.fleur",
-  logoSrc: "/logo-mark.jpg",
+  /** Bo tròn — PNG có mask tròn + nền paper */
+  logoSrc: "/logo-icon.png",
 } as const;
