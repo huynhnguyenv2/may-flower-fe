@@ -4,6 +4,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SupportChatWidget } from "@/components/SupportChatWidget";
+import { BRAND } from "@/lib/brand";
 import "./globals.css";
 
 const display = Playfair_Display({
@@ -21,12 +23,12 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: {
       default: t("siteTitle"),
-      template: "%s | May Flower",
+      template: `%s | ${BRAND.name}`,
     },
     description: t("siteDescription"),
     icons: {
-      icon: [{ url: "/logo-mark.svg", type: "image/svg+xml" }],
-      apple: [{ url: "/logo-mark.svg" }],
+      icon: [{ url: "/logo-mark.jpg", type: "image/jpeg" }],
+      apple: [{ url: "/apple-touch-icon.png", type: "image/png" }],
     },
   };
 }
@@ -46,6 +48,7 @@ export default async function RootLayout({
             {children}
           </main>
           <SiteFooter />
+          <SupportChatWidget />
         </NextIntlClientProvider>
       </body>
     </html>

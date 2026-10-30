@@ -12,7 +12,9 @@ import {
   productDetailSchema,
   productSummarySchema,
   recommendationTierSchema,
+  supportReplySchema,
   type ConciergeAnswers,
+  type SupportReply,
 } from "@may-flower/shared";
 import { z } from "zod";
 
@@ -72,6 +74,22 @@ export async function createConciergeSession() {
     body: "{}",
   });
   return json.data;
+}
+
+export async function createSupportSession(locale: "vi" | "en") {
+  const json = await fetchJson<{ data: { id: string } }>("/support/sessions", {
+    method: "POST",
+    body: JSON.stringify({ locale }),
+  });
+  return json.data;
+}
+
+export async function sendSupportMessage(sessionId: string, content: string): Promise<SupportReply> {
+  const json = await fetchJson<{ data: unknown }>(
+    `/support/sessions/${sessionId}/messages`,
+    { method: "POST", body: JSON.stringify({ content }) },
+  );
+  return wrap(supportReplySchema, json.data);
 }
 
 export async function recommendConcierge(sessionId: string, answers: ConciergeAnswers) {

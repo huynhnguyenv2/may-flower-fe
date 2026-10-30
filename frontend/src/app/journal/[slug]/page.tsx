@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 const content: Record<string, { title: string; body: string }> = {
   "y-nghia-hoa-hong": {
     title: "Hoa hồng không chỉ là tình yêu",
-    body: "Sắc cam coral gợi sự ấm áp; hồng pastel nhẹ như lời cảm ơn. May Flower chọn hoa theo câu chuyện của bạn.",
+    body: "Sắc cam coral gợi sự ấm áp; hồng pastel nhẹ như lời cảm ơn. nau.fleur chọn hoa theo câu chuyện của bạn.",
   },
   "cham-hoa-tuoi": {
     title: "Giữ hoa tươi lâu hơn ở nhà",

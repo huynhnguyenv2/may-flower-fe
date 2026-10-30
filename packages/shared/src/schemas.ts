@@ -51,6 +51,21 @@ export const conciergeAnswersSchema = z.object({
   deliveryDate: z.string().optional(),
 });
 
+export const supportLocaleSchema = z.enum(["vi", "en"]);
+
+export const supportCreateSessionSchema = z.object({
+  locale: supportLocaleSchema.optional(),
+});
+
+export const supportSendMessageSchema = z.object({
+  content: z.string().min(1).max(2000),
+});
+
+export const supportReplySchema = z.object({
+  message: z.string(),
+  source: z.enum(["openai", "rules"]),
+});
+
 export const recommendationTierSchema = z.object({
   tier: z.enum(["safe", "signature", "unexpected"]),
   tierLabel: z.string(),
@@ -114,3 +129,4 @@ export type ProductDetail = z.infer<typeof productDetailSchema>;
 export type CreateOrderRequest = z.infer<typeof createOrderRequestSchema>;
 export type RecommendationTier = z.infer<typeof recommendationTierSchema>;
 export type ConciergeAnswers = z.infer<typeof conciergeAnswersSchema>;
+export type SupportReply = z.infer<typeof supportReplySchema>;

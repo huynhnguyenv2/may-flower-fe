@@ -1,7 +1,7 @@
 {
   "meta": {
-    "siteTitle": "May Flower — Studio hoa hiểu con người",
-    "siteDescription": "Chọn hoa theo cảm xúc — studio hoa cao cấp tại Đà Nẵng."
+    "siteTitle": "nau.fleur — Lặng như đất, nở như thơ",
+    "siteDescription": "Nâu Fleur · Đà Nẵng — hoa xinh theo cảm xúc, giao tận tay nội thành."
   },
   "nav": {
     "home": "Trang chủ",
@@ -11,15 +11,15 @@
     "cart": "Giỏ hàng"
   },
   "home": {
-    "studioTag": "May Flower Studio · Đà Nẵng",
-    "heroTitle": "Studio hoa hiểu con người",
-    "heroSubtitle": "Chọn theo cảm xúc — giao tận tay tại Đà Nẵng.",
+    "studioTag": "nau.fleur · Đà Nẵng",
+    "heroTitle": "Lặng như đất, nở như thơ",
+    "heroSubtitle": "Mình là “nâu” — chọn hoa theo cảm xúc, giao tận tay tại Đà Nẵng.",
     "ctaConcierge": "Tìm hoa cho bạn",
     "ctaCollections": "Xem bộ sưu tập",
     "emotionalTitle": "Hoa theo cảm xúc",
     "featuredTitle": "Bó hoa nổi bật",
-    "storyTitle": "Câu chuyện May Flower",
-    "storyBody": "Studio tại Đà Nẵng — từ Cầu Rồng tới Mỹ Khê, chúng tôi gói từng bó như một lời nhắn: dịu dàng, chân thành, đúng người nhận. Hoa cho tiệc cưới, sinh nhật, hay chỉ vì thương."
+    "storyTitle": "Câu chuyện nau.fleur",
+    "storyBody": "Ở đây có bán hoa xink — từ Cầu Rồng tới Mỹ Khê, mỗi bó là một lời nhắn dịu dàng và chân thành. Hoa cưới, sinh nhật, hay chỉ vì thương."
   },
   "collections": {
     "title": "Bộ sưu tập",
@@ -67,7 +67,9 @@
   "footer": {
     "tagline": "Đà Nẵng · Giao hoa theo cảm xúc",
     "districts": "Hải Châu · Sơn Trà · Ngũ Hành Sơn · Thanh Khê · Cẩm Lệ · Liên Chiểu · Hòa Vang",
-    "copyright": "© {year} May Flower"
+    "copyright": "© {year} nau.fleur",
+    "instagram": "Theo dõi nau.fleur trên Instagram",
+    "facebook": "Theo dõi Nâu Fleur trên Facebook"
   },
   "product": {
     "from": "Từ",
@@ -107,5 +109,18 @@
     "emptyCart": "Giỏ hàng trống.",
     "pickSlot": "Chọn khung giờ giao",
     "orderError": "Không thể đặt hàng"
+  },
+  "supportChat": {
+    "open": "Hỗ trợ",
+    "close": "Đóng",
+    "title": "Chat hỗ trợ",
+    "subtitle": "nau.fleur · Đà Nẵng",
+    "welcome": "Chào bạn! Mình có thể hỗ trợ giao hàng, giá, chọn hoa — hỏi thoải mái nhé.",
+    "placeholder": "Nhập câu hỏi…",
+    "send": "Gửi",
+    "typing": "Đang trả lời…",
+    "error": "Không gửi được tin nhắn. Thử lại sau hoặc gọi studio.",
+    "conciergeHint": "Muốn gợi ý bó hoa cụ thể?",
+    "conciergeLink": "Tìm hoa cho bạn"
   }
 }

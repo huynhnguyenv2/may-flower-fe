@@ -1,7 +1,7 @@
 {
   "meta": {
-    "siteTitle": "May Flower — A studio that understands people",
-    "siteDescription": "Choose flowers by feeling — premium studio in Da Nang, Vietnam."
+    "siteTitle": "nau.fleur — Quiet like earth, blooming like poetry",
+    "siteDescription": "Nâu Fleur · Da Nang — thoughtful bouquets, hand-delivered across the city."
   },
   "nav": {
     "home": "Home",
@@ -11,15 +11,15 @@
     "cart": "Cart"
   },
   "home": {
-    "studioTag": "May Flower Studio · Da Nang",
-    "heroTitle": "A studio that understands people",
-    "heroSubtitle": "Choose by feeling — hand-delivered across Da Nang.",
+    "studioTag": "nau.fleur · Da Nang",
+    "heroTitle": "Quiet like earth, blooming like poetry",
+    "heroSubtitle": "Thoughtful bouquets by feeling — hand-delivered across Da Nang.",
     "ctaConcierge": "Find your flowers",
     "ctaCollections": "Browse collections",
     "emotionalTitle": "Flowers as a feeling",
     "featuredTitle": "Featured bouquets",
-    "storyTitle": "The May Flower story",
-    "storyBody": "Based in Da Nang — from Dragon Bridge to My Khe Beach, we wrap each bouquet like a message: gentle, sincere, and meant for your recipient. Weddings, birthdays, or just because."
+    "storyTitle": "The nau.fleur story",
+    "storyBody": "Beautiful flowers, wrapped with care — from Dragon Bridge to My Khe Beach. Weddings, birthdays, or just because."
   },
   "collections": {
     "title": "Collections",
@@ -67,7 +67,9 @@
   "footer": {
     "tagline": "Da Nang · Flowers with feeling",
     "districts": "Hai Chau · Son Tra · Ngu Hanh Son · Thanh Khe · Cam Le · Lien Chieu · Hoa Vang",
-    "copyright": "© {year} May Flower"
+    "copyright": "© {year} nau.fleur",
+    "instagram": "Follow nau.fleur on Instagram",
+    "facebook": "Follow Nâu Fleur on Facebook"
   },
   "product": {
     "from": "From",
@@ -107,5 +109,18 @@
     "emptyCart": "Your cart is empty.",
     "pickSlot": "Choose a delivery time slot",
     "orderError": "Could not place order"
+  },
+  "supportChat": {
+    "open": "Support",
+    "close": "Close",
+    "title": "Support chat",
+    "subtitle": "nau.fleur · Da Nang",
+    "welcome": "Hi! Ask about delivery, pricing, or choosing a bouquet — happy to help.",
+    "placeholder": "Type your question…",
+    "send": "Send",
+    "typing": "Replying…",
+    "error": "Could not send your message. Please try again later.",
+    "conciergeHint": "Want bouquet picks?",
+    "conciergeLink": "Find your flowers"
   }
 }

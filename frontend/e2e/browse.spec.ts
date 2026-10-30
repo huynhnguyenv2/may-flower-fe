@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("home to product and cart", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(/Studio|studio/i);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/nở như thơ/i);
 
   await page.getByRole("link", { name: "Xem bộ sưu tập" }).click();
   await expect(page).toHaveURL(/collections/);

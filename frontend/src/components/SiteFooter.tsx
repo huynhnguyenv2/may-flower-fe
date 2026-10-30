@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { MayFlowerLogo } from "@/components/MayFlowerLogo";
+import { SocialLinks } from "@/components/SocialLinks";
 
 export async function SiteFooter() {
   const t = await getTranslations("footer");
@@ -11,6 +12,11 @@ export async function SiteFooter() {
         <MayFlowerLogo size={32} className="text-umber" />
         <p className="mt-2">{t("tagline")}</p>
         <p className="mt-1 text-xs">{t("districts")}</p>
+        <SocialLinks
+          className="mt-4"
+          labelInstagram={t("instagram")}
+          labelFacebook={t("facebook")}
+        />
         <p className="mt-6">{t("copyright", { year })}</p>
       </div>
     </footer>
