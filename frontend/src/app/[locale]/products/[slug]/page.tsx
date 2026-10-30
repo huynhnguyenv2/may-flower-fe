@@ -4,23 +4,32 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { formatVnd } from "@may-flower/shared";
+import { getTranslations } from "next-intl/server";
 import { AddToCartButton } from "@/components/AddToCartButton";
 import { getProduct } from "@/lib/api";
+import type { Locale } from "@/i18n/config";
+import { breadcrumbJsonLd, pageSeo } from "@/lib/seo";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ slug: string; locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   try {
     const p = await getProduct(slug);
-    return { title: p.name, description: p.story };
+    return pageSeo({
+      title: p.name,
+      description: p.story,
+      pathname: `/products/${slug}`,
+      locale: locale as Locale,
+      image: p.imageUrl,
+    });
   } catch {
     return { title: "Sản phẩm" };
   }
 }
 
 export default async function ProductPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   let product;
   try {
     product = await getProduct(slug);
@@ -28,7 +37,8 @@ export default async function ProductPage({ params }: Props) {
     notFound();
   }
 
-  const jsonLd = {
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+  const productLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
@@ -43,12 +53,19 @@ export default async function ProductPage({ params }: Props) {
         : "https://schema.org/OutOfStock",
     })),
   };
+  const breadcrumbs = breadcrumbJsonLd(
+    [
+      { name: tNav("collections"), path: "/collections" },
+      { name: product.name, path: `/products/${slug}` },
+    ],
+    locale as Locale,
+  );
 
   return (
     <div>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([productLd, breadcrumbs]) }}
       />
       <div className="grid gap-10 lg:grid-cols-2">
         <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-white ring-1 ring-black/5">

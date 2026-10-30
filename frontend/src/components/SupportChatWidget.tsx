@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { createSupportSession, sendSupportMessage } from "@/lib/api";
 
 type ChatLine = { role: "user" | "assistant"; content: string };

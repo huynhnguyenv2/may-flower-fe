@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { pexelsPhoto } from "@may-flower/shared";
 import { Reveal } from "@/components/motion/Reveal";
+import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/config";
+import { pageSeo } from "@/lib/seo";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("journal");
-  return { title: t("title") };
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "journal" });
+  return pageSeo({
+    title: t("title"),
+    description: t("subtitle"),
+    pathname: "/journal",
+    locale: locale as Locale,
+  });
 }
 
 const posts = [

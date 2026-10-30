@@ -1,21 +1,20 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { setLocale } from "@/i18n/actions";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/config";
 
 export function LocaleSwitcher() {
   const locale = useLocale() as Locale;
+  const pathname = usePathname();
   const router = useRouter();
   const [pending, startTransition] = useTransition();
 
   function onSelect(next: Locale) {
     if (next === locale || pending) return;
-    startTransition(async () => {
-      await setLocale(next);
-      router.refresh();
+    startTransition(() => {
+      router.replace(pathname, { locale: next });
     });
   }
 

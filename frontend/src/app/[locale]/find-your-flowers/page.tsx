@@ -2,13 +2,20 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { ConciergeWizard } from "@/components/ConciergeWizard";
 import { Reveal } from "@/components/motion/Reveal";
+import type { Locale } from "@/i18n/config";
+import { pageSeo } from "@/lib/seo";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("concierge");
-  return {
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "concierge" });
+  return pageSeo({
     title: t("title"),
     description: t("description"),
-  };
+    pathname: "/find-your-flowers",
+    locale: locale as Locale,
+  });
 }
 
 export default async function FindYourFlowersPage() {

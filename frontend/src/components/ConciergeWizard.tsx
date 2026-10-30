@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { RecommendationTier } from "@may-flower/shared";
 import { formatVnd } from "@may-flower/shared";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import {
   createConciergeSession,
   recommendConcierge,

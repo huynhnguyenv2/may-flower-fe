@@ -3,23 +3,32 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { ProductCard } from "@/components/ProductCard";
 import { getCollection } from "@/lib/api";
+import type { Locale } from "@/i18n/config";
+import { breadcrumbJsonLd, pageSeo } from "@/lib/seo";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ slug: string; locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   try {
     const c = await getCollection(slug);
-    return { title: c.title, description: c.story };
+    return pageSeo({
+      title: c.title,
+      description: c.story,
+      pathname: `/collections/${slug}`,
+      locale: locale as Locale,
+      image: c.imageUrl,
+    });
   } catch {
     return { title: "Bộ sưu tập" };
   }
 }
 
 export default async function CollectionDetailPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   let collection;
   try {
     collection = await getCollection(slug);
@@ -27,8 +36,21 @@ export default async function CollectionDetailPage({ params }: Props) {
     notFound();
   }
 
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+  const breadcrumbs = breadcrumbJsonLd(
+    [
+      { name: tNav("collections"), path: "/collections" },
+      { name: collection.title, path: `/collections/${slug}` },
+    ],
+    locale as Locale,
+  );
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
       {collection.imageUrl ? (
         <div className="relative mb-10 aspect-[21/9] overflow-hidden rounded-2xl ring-1 ring-black/5">
           <Image

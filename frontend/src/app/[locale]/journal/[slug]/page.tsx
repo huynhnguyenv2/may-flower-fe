@@ -1,4 +1,7 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import type { Locale } from "@/i18n/config";
+import { pageSeo } from "@/lib/seo";
 
 const content: Record<string, { title: string; body: string }> = {
   "y-nghia-hoa-hong": {
@@ -11,7 +14,19 @@ const content: Record<string, { title: string; body: string }> = {
   },
 };
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ slug: string; locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug, locale } = await params;
+  const post = content[slug];
+  if (!post) return { title: "Journal" };
+  return pageSeo({
+    title: post.title,
+    description: post.body,
+    pathname: `/journal/${slug}`,
+    locale: locale as Locale,
+  });
+}
 
 export default async function JournalPostPage({ params }: Props) {
   const { slug } = await params;

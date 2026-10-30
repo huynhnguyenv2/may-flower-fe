@@ -5,10 +5,20 @@ import { getTranslations } from "next-intl/server";
 import { CollectionCard } from "@/components/CollectionCard";
 import { Reveal } from "@/components/motion/Reveal";
 import { getCollections } from "@/lib/api";
+import type { Locale } from "@/i18n/config";
+import { pageSeo } from "@/lib/seo";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("collections");
-  return { title: t("title") };
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "collections" });
+  return pageSeo({
+    title: t("title"),
+    description: t("subtitle"),
+    pathname: "/collections",
+    locale: locale as Locale,
+  });
 }
 
 export default async function CollectionsPage() {
