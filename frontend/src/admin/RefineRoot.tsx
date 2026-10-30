@@ -22,6 +22,12 @@ export function RefineRoot({ children }: { children: React.ReactNode }) {
           meta: { label: "Đơn hàng" },
         },
         {
+          name: "custom-order-requests",
+          list: "/admin/custom-order-requests",
+          show: "/admin/custom-order-requests/show/:id",
+          meta: { label: "Yêu cầu AI Florist" },
+        },
+        {
           name: "products",
           list: "/admin/products",
           meta: { label: "Sản phẩm" },

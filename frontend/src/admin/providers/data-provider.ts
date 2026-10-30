@@ -30,12 +30,20 @@ export const dataProvider: DataProvider = {
       const data = await adminFetch<TData[]>("/support/sessions");
       return { data, total: data.length };
     }
+    if (resource === "custom-order-requests") {
+      const data = await adminFetch<TData[]>("/custom-order-requests");
+      return { data, total: data.length };
+    }
     throw new Error(`Unknown resource: ${resource}`);
   },
   getOne: async <TData extends BaseRecord = BaseRecord>(params: GetOneParams) => {
     const { resource, id } = params;
     if (resource === "support-sessions") {
       const data = await adminFetch<TData>(`/support/sessions/${id}`);
+      return { data };
+    }
+    if (resource === "custom-order-requests") {
+      const data = await adminFetch<TData>(`/custom-order-requests/${id}`);
       return { data };
     }
     throw new Error("getOne not implemented");

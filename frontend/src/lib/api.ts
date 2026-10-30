@@ -13,8 +13,19 @@ import {
   productSummarySchema,
   recommendationTierSchema,
   supportReplySchema,
+  floristMessageReplySchema,
+  floristConceptSchema,
+  floristSessionSummarySchema,
+  customOrderRequestResponseSchema,
+  submitCustomOrderRequestSchema,
+  floristCreateSessionSchema,
+  floristSendMessageSchema,
+  floristUpdateSessionSchema,
   type ConciergeAnswers,
   type SupportReply,
+  type FloristConcept,
+  type FloristSessionSummary,
+  type SubmitCustomOrderRequest,
 } from "@may-flower/shared";
 import { z } from "zod";
 
@@ -132,4 +143,95 @@ export async function getOrder(orderNumber: string) {
     cache: "no-store",
   });
   return wrap(orderResponseSchema, json.data);
+}
+
+export async function createFloristSession(locale: "vi" | "en" = "vi") {
+  floristCreateSessionSchema.parse({ locale });
+  const json = await fetchJson<{ data: { id: string } }>("/florist/sessions", {
+    method: "POST",
+    body: JSON.stringify({ locale }),
+    cache: "no-store",
+  });
+  return json.data;
+}
+
+export async function fetchFloristSession(id: string) {
+  try {
+    const json = await fetchJson<{
+      data: {
+        messages: { role: string; content: string }[];
+        summary: FloristSessionSummary;
+      };
+    }>(`/florist/sessions/${id}`, { cache: "no-store" });
+    return {
+      messages: json.data.messages,
+      summary: wrap(floristSessionSummarySchema, json.data.summary),
+    };
+  } catch {
+    return null;
+  }
+}
+
+export async function sendFloristMessage(sessionId: string, content: string) {
+  floristSendMessageSchema.parse({ content });
+  const json = await fetchJson<{ data: unknown }>(
+    `/florist/sessions/${sessionId}/messages`,
+    { method: "POST", body: JSON.stringify({ content }), cache: "no-store" },
+  );
+  return wrap(floristMessageReplySchema, json.data);
+}
+
+export async function fetchFloristConcepts(sessionId: string): Promise<FloristConcept[]> {
+  const json = await fetchJson<{ data: unknown[] }>(
+    `/florist/sessions/${sessionId}/concepts`,
+    { cache: "no-store" },
+  );
+  return json.data.map((d) => wrap(floristConceptSchema, d));
+}
+
+export async function selectFloristConcept(sessionId: string, conceptId: string) {
+  const json = await fetchJson<{ data: { summary: unknown } }>(
+    `/florist/sessions/${sessionId}/concepts/${conceptId}/select`,
+    { method: "POST", body: "{}", cache: "no-store" },
+  );
+  return { summary: wrap(floristSessionSummarySchema, json.data.summary) };
+}
+
+export async function fetchFloristSummary(sessionId: string): Promise<FloristSessionSummary> {
+  const json = await fetchJson<{ data: unknown }>(
+    `/florist/sessions/${sessionId}/summary`,
+    { cache: "no-store" },
+  );
+  return wrap(floristSessionSummarySchema, json.data);
+}
+
+export async function updateFloristSession(
+  sessionId: string,
+  body: z.infer<typeof floristUpdateSessionSchema>,
+) {
+  floristUpdateSessionSchema.parse(body);
+  const json = await fetchJson<{ data: unknown }>(`/florist/sessions/${sessionId}`, {
+    method: "PATCH",
+    body: JSON.stringify(body),
+    cache: "no-store",
+  });
+  return wrap(floristSessionSummarySchema, json.data);
+}
+
+export async function submitFloristRequest(
+  sessionId: string,
+  body: SubmitCustomOrderRequest,
+  idempotencyKey?: string,
+) {
+  submitCustomOrderRequestSchema.parse(body);
+  const json = await fetchJson<{ data: unknown }>(
+    `/florist/sessions/${sessionId}/submit`,
+    {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: idempotencyKey ? { "Idempotency-Key": idempotencyKey } : {},
+      cache: "no-store",
+    },
+  );
+  return wrap(customOrderRequestResponseSchema, json.data);
 }

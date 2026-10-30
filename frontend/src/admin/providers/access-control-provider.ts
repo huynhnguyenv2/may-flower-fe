@@ -26,6 +26,12 @@ export const accessControlProvider: AccessControlProvider = {
     if (resource === "support-sessions") {
       return { can: isOwnerOrManager && (action === "list" || action === "show") };
     }
+    if (resource === "custom-order-requests") {
+      return {
+        can: roles.some((r) => ["owner", "manager", "florist"].includes(r)) &&
+          (action === "list" || action === "show"),
+      };
+    }
     if (resource === "assistant") {
       return { can: roles.some((r) => ["owner", "manager", "florist"].includes(r)) };
     }

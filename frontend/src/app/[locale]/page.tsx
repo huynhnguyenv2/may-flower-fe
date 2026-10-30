@@ -6,7 +6,7 @@ import { getTranslations } from "next-intl/server";
 import {
   DA_NANG_HERO,
   DA_NANG_STORY_GALLERY,
-  pexelsPhoto,
+  mediaPhoto,
 } from "@may-flower/shared";
 import { CollectionCard } from "@/components/CollectionCard";
 import { HeroImageMotion } from "@/components/motion/HeroImageMotion";
@@ -48,7 +48,7 @@ export default async function HomePage() {
         </Reveal>
         <Reveal delay={120}>
           <HeroImageMotion
-            src={pexelsPhoto(DA_NANG_HERO.id, 1200)}
+            src={mediaPhoto(DA_NANG_HERO, 1200)}
             alt={DA_NANG_HERO.alt}
             sizes="(max-width: 768px) 100vw, 50vw"
             priority
@@ -88,12 +88,12 @@ export default async function HomePage() {
             <div className="grid gap-3 sm:grid-cols-3">
               {DA_NANG_STORY_GALLERY.map((img, i) => (
                 <div
-                  key={img.id}
+                  key={`${img.source}-${img.id}`}
                   className="relative aspect-[4/5] overflow-hidden rounded-xl ring-1 ring-black/5"
                   style={{ animationDelay: `${i * 100}ms` }}
                 >
                   <Image
-                    src={pexelsPhoto(img.id, 600)}
+                    src={mediaPhoto(img, 600)}
                     alt={img.alt}
                     fill
                     className="object-cover transition duration-700 hover:scale-[1.03]"
