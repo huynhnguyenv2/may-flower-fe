@@ -1,11 +1,11 @@
 export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
-import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
-import { formatVnd } from "@may-flower/shared";
 import { getTranslations } from "next-intl/server";
-import { AddToCartButton } from "@/components/AddToCartButton";
+import { ProductGallery } from "@/components/product/ProductGallery";
+import { ProductPurchasePanel } from "@/components/product/ProductPurchasePanel";
 import { getProduct } from "@/lib/api";
 import type { Locale } from "@/i18n/config";
 import { breadcrumbJsonLd, pageSeo } from "@/lib/seo";
@@ -38,6 +38,8 @@ export default async function ProductPage({ params }: Props) {
   }
 
   const tNav = await getTranslations({ locale, namespace: "nav" });
+  const tProduct = await getTranslations({ locale, namespace: "product" });
+
   const productLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -55,7 +57,7 @@ export default async function ProductPage({ params }: Props) {
   };
   const breadcrumbs = breadcrumbJsonLd(
     [
-      { name: tNav("collections"), path: "/collections" },
+      { name: tNav("shop"), path: "/shop" },
       { name: product.name, path: `/products/${slug}` },
     ],
     locale as Locale,
@@ -67,48 +69,34 @@ export default async function ProductPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify([productLd, breadcrumbs]) }}
       />
-      <div className="grid gap-10 lg:grid-cols-2">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-white ring-1 ring-black/5">
-          {product.imageUrl ? (
-            <Image
-              src={product.imageUrl}
-              alt={product.name}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          ) : null}
-        </div>
+      <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-ink/50">
+        <Link href="/shop" className="hover:text-umber">
+          {tNav("shop")}
+        </Link>
+        <span aria-hidden>/</span>
+        <span className="text-ink/80">{product.name}</span>
+      </nav>
+
+      <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
+        <ProductGallery name={product.name} imageUrl={product.imageUrl} />
         <div>
-          <h1 className="font-display text-4xl text-ink">{product.name}</h1>
-          <p className="mt-4 text-lg text-ink/80">{product.story}</p>
-          <p className="mt-6 text-sm text-ink/60 leading-relaxed">{product.description}</p>
-          <div className="mt-10 space-y-6">
-            {product.variants.map((v) => (
-              <div
-                key={v.id}
-                className="flex flex-col gap-3 rounded-xl border border-gold/30 bg-white p-4 sm:flex-row sm:items-center sm:justify-between"
-              >
-                <div>
-                  <p className="font-medium">{v.sizeLabel}</p>
-                  <p className="text-umber">{formatVnd(v.priceVnd)}</p>
-                  <p className="text-xs text-ink/50 mt-1">
-                    {v.isAvailable ? `Còn ${v.availableQuantity} bó` : "Hết hàng"}
-                  </p>
-                </div>
-                <AddToCartButton
-                  variantId={v.id}
-                  productSlug={product.slug}
-                  productName={product.name}
-                  variantLabel={v.sizeLabel}
-                  priceVnd={v.priceVnd}
-                  imageUrl={product.imageUrl}
-                  disabled={!v.isAvailable}
-                />
-              </div>
-            ))}
-          </div>
+          <p className="text-xs uppercase tracking-[0.2em] text-umber/70">{tProduct("studioPiece")}</p>
+          <h1 className="font-display mt-2 text-4xl text-ink md:text-5xl">{product.name}</h1>
+          <p className="mt-4 text-lg leading-relaxed text-ink/80">{product.story}</p>
+          {product.emotionalTags.length > 0 ? (
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {product.emotionalTags.map((tag) => (
+                <li
+                  key={tag}
+                  className="rounded-full bg-gold/15 px-3 py-1 text-xs font-medium text-umber"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          <p className="mt-6 text-sm leading-relaxed text-ink/65">{product.description}</p>
+          <ProductPurchasePanel product={product} />
         </div>
       </div>
     </div>

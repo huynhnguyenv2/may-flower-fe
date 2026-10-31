@@ -5,10 +5,13 @@
   },
   "nav": {
     "home": "Trang chủ",
+    "shop": "Cửa hàng hoa",
     "collections": "Bộ sưu tập",
     "concierge": "Tìm hoa cho bạn",
     "journal": "Nhật ký",
-    "cart": "Giỏ hàng"
+    "cart": "Giỏ hàng",
+    "menuOpen": "Mở menu",
+    "menuClose": "Đóng menu"
   },
   "home": {
     "studioTag": "nau.fleur · Đà Nẵng",
@@ -16,10 +19,63 @@
     "heroSubtitle": "Mình là “nâu” — chọn hoa theo cảm xúc, giao tận tay tại Đà Nẵng.",
     "ctaConcierge": "Tìm hoa cho bạn",
     "ctaCollections": "Xem bộ sưu tập",
+    "ctaShop": "Xem tất cả hoa",
+    "occasionsEyebrow": "Dịp tặng hoa",
+    "occasionsTitle": "Chọn theo dịp",
+    "occasionsBrowse": "Khám phá →",
+    "occasions": {
+      "birthday": "Sinh nhật",
+      "thanks": "Cảm ơn",
+      "love": "Vì thương",
+      "sorry": "Xin lỗi",
+      "miss": "Nhớ bạn"
+    },
     "emotionalTitle": "Hoa theo cảm xúc",
+    "emotionalDesc": "Mỗi bộ sưu tập gói một cảm giác — chọn câu chuyện trước, chọn bó sau.",
+    "viewAllCollections": "Tất cả bộ sưu tập",
+    "seasonalTitle": "Mùa hoa",
+    "seasonalDesc": "Hoa theo mùa, tươi và đúng nhịp thời gian.",
+    "signatureTitle": "Chữ ký studio",
+    "signatureDesc": "Những thiết kế đặc trưng của nau.fleur.",
     "featuredTitle": "Bó hoa nổi bật",
+    "customEyebrow": "Thiết kế riêng",
+    "customTitle": "Bó hoa của riêng bạn",
+    "customBody": "Trò chuyện với AI Florist, xem concept minh họa và gửi yêu cầu — studio duyệt giá trước khi chốt đơn.",
+    "customCta": "Bắt đầu thiết kế",
+    "testimonialsTitle": "Khách nói gì",
+    "testimonials": {
+      "one": {
+        "quote": "Hoa đẹp hơn ảnh, giao đúng giờ gần biển Mỹ Khê — người nhận rất xúc động.",
+        "name": "Lan · Sơn Trà"
+      },
+      "two": {
+        "quote": "Mình không biết chọn gì; Concierge gợi ý đúng ngân sách và cảm xúc.",
+        "name": "Minh · Hải Châu"
+      },
+      "three": {
+        "quote": "Thiệp và gói hoa rất tinh tế — cảm giác studio chứ không phải shop online.",
+        "name": "Hương · Ngũ Hành Sơn"
+      }
+    },
     "storyTitle": "Câu chuyện nau.fleur",
     "storyBody": "Ở đây có bán hoa xink — từ Cầu Rồng tới Mỹ Khê, mỗi bó là một lời nhắn dịu dàng và chân thành. Hoa cưới, sinh nhật, hay chỉ vì thương."
+  },
+  "shop": {
+    "title": "Cửa hàng hoa",
+    "subtitle": "Duyệt catalog thật — lọc theo bộ sưu tập, cảm xúc và ngân sách.",
+    "search": "Tìm kiếm",
+    "searchPlaceholder": "Tên bó hoa, cảm xúc…",
+    "sort": "Sắp xếp",
+    "sortName": "Tên A–Z",
+    "sortPriceAsc": "Giá thấp → cao",
+    "sortPriceDesc": "Giá cao → thấp",
+    "filterCollection": "Bộ sưu tập",
+    "filterFeeling": "Cảm xúc",
+    "all": "Tất cả",
+    "resultCount": "{count} sản phẩm",
+    "empty": "Không có sản phẩm phù hợp. Thử bỏ bớt bộ lọc nhé.",
+    "prev": "Trước",
+    "next": "Sau"
   },
   "collections": {
     "title": "Bộ sưu tập",
@@ -29,8 +85,11 @@
     "title": "Giỏ hàng",
     "empty": "Giỏ trống.",
     "explore": "Khám phá bộ sưu tập",
+    "exploreShop": "Xem cửa hàng hoa",
     "subtotal": "Tạm tính",
-    "checkout": "Thanh toán"
+    "checkout": "Thanh toán",
+    "deliveryNote": "Phí giao tính ở bước thanh toán",
+    "continueShopping": "Tiếp tục mua sắm"
   },
   "journal": {
     "title": "Nhật ký & câu chuyện",
@@ -99,12 +158,19 @@
     "districts": "Hải Châu · Sơn Trà · Ngũ Hành Sơn · Thanh Khê · Cẩm Lệ · Liên Chiểu · Hòa Vang",
     "copyright": "© {year} nau.fleur",
     "instagram": "Theo dõi nau.fleur trên Instagram",
-    "facebook": "Theo dõi Nâu Fleur trên Facebook"
+    "facebook": "Theo dõi Nâu Fleur trên Facebook",
+    "explore": "Khám phá",
+    "service": "Dịch vụ",
+    "deliveryNote": "Giao nội thành Đà Nẵng · chọn khung giờ khi thanh toán",
+    "hours": "Nhận đơn online 8:00–20:00 hàng ngày"
   },
   "product": {
     "from": "Từ",
     "addToCart": "Thêm vào giỏ",
     "addedToCart": "Đã thêm vào giỏ",
+    "studioPiece": "Tác phẩm studio",
+    "chooseSize": "Chọn kích cỡ",
+    "stockLeft": "Còn {count} bó",
     "availability": {
       "available": "Còn hàng",
       "limited": "Sắp hết",

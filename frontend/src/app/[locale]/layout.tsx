@@ -70,7 +70,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SiteHeader />
-          <main className="animate-page-enter mx-auto min-h-[70vh] max-w-6xl px-4 py-8">
+          <main className="animate-page-enter mx-auto min-h-[70vh] max-w-6xl px-4 py-6 md:py-8">
             {children}
           </main>
           <SiteFooter />

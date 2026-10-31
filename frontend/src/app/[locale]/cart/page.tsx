@@ -1,9 +1,11 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { formatVnd } from "@may-flower/shared";
 import { useTranslations } from "next-intl";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Reveal } from "@/components/motion/Reveal";
 import { readCart, writeCart, type CartItem } from "@/lib/cart";
 
@@ -18,10 +20,7 @@ export default function CartPage() {
     return () => window.removeEventListener("cart-updated", refresh);
   }, []);
 
-  const total = items.reduce(
-    (sum, i) => sum + Number(i.priceVnd) * i.quantity,
-    0,
-  );
+  const total = items.reduce((sum, i) => sum + Number(i.priceVnd) * i.quantity, 0);
 
   function updateQty(variantId: string, quantity: number) {
     const next = items
@@ -33,53 +32,68 @@ export default function CartPage() {
 
   return (
     <Reveal>
-      <div>
-        <h1 className="font-display text-3xl">{t("title")}</h1>
-        {items.length === 0 ? (
-          <p className="mt-6 text-ink/70">
-            {t("empty")}{" "}
-            <Link href="/collections" className="text-umber underline">
-              {t("explore")}
-            </Link>
-          </p>
-        ) : (
-          <>
+      <div className="lg:grid lg:grid-cols-3 lg:gap-10">
+        <div className="lg:col-span-2">
+          <h1 className="font-display text-3xl md:text-4xl">{t("title")}</h1>
+          {items.length === 0 ? (
+            <p className="mt-8 text-ink/70">
+              {t("empty")}{" "}
+              <Link href="/shop" className="text-umber underline">
+                {t("exploreShop")}
+              </Link>
+            </p>
+          ) : (
             <ul className="mt-8 space-y-4">
               {items.map((i) => (
                 <li
                   key={i.variantId}
-                  className="flex flex-col gap-2 rounded-xl bg-white p-4 ring-1 ring-black/5 transition hover:shadow-sm sm:flex-row sm:justify-between"
+                  className="flex gap-4 rounded-2xl bg-white p-4 ring-1 ring-black/5"
                 >
-                  <div>
+                  {i.imageUrl ? (
+                    <div className="relative h-20 w-16 shrink-0 overflow-hidden rounded-lg">
+                      <Image src={i.imageUrl} alt="" fill className="object-cover" sizes="64px" />
+                    </div>
+                  ) : null}
+                  <div className="min-w-0 flex-1">
                     <p className="font-medium">{i.productName}</p>
                     <p className="text-sm text-ink/60">{i.variantLabel}</p>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <input
-                      type="number"
-                      min={1}
-                      className="w-16 rounded border px-2 py-1"
-                      value={i.quantity}
-                      onChange={(e) => updateQty(i.variantId, Number(e.target.value))}
-                    />
-                    <p className="font-medium text-umber">
-                      {formatVnd(String(Number(i.priceVnd) * i.quantity))}
-                    </p>
+                    <div className="mt-3 flex flex-wrap items-center gap-4">
+                      <label className="flex items-center gap-2 text-sm">
+                        <span className="text-ink/50">Qty</span>
+                        <input
+                          type="number"
+                          min={1}
+                          className="w-16 rounded-lg border border-gold/30 px-2 py-2 text-base"
+                          value={i.quantity}
+                          onChange={(e) => updateQty(i.variantId, Number(e.target.value))}
+                        />
+                      </label>
+                      <p className="font-medium text-umber">
+                        {formatVnd(String(Number(i.priceVnd) * i.quantity))}
+                      </p>
+                    </div>
                   </div>
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-lg font-medium">
-              {t("subtotal")}: {formatVnd(String(total))}
-            </p>
-            <Link
-              href="/checkout"
-              className="mt-6 inline-block rounded-full bg-umber px-8 py-3 text-sm text-white transition hover:bg-umber/90"
-            >
-              {t("checkout")}
-            </Link>
-          </>
-        )}
+          )}
+        </div>
+
+        {items.length > 0 ? (
+          <aside className="mt-10 lg:mt-16">
+            <div className="sticky top-24 rounded-2xl bg-white p-6 ring-1 ring-black/5">
+              <p className="text-sm text-ink/60">{t("subtotal")}</p>
+              <p className="font-display mt-1 text-3xl text-umber">{formatVnd(String(total))}</p>
+              <p className="mt-2 text-xs text-ink/50">{t("deliveryNote")}</p>
+              <ButtonLink href="/checkout" className="mt-6 w-full">
+                {t("checkout")}
+              </ButtonLink>
+              <Link href="/shop" className="mt-4 block text-center text-sm text-umber hover:underline">
+                {t("continueShopping")}
+              </Link>
+            </div>
+          </aside>
+        ) : null}
       </div>
     </Reveal>
   );

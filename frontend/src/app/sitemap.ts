@@ -9,6 +9,7 @@ export const dynamic = "force-dynamic";
 
 const STATIC_PATHS = [
   "/",
+  "/shop",
   "/collections",
   "/find-your-flowers",
   "/journal",

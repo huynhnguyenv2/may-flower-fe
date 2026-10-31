@@ -5,10 +5,13 @@
   },
   "nav": {
     "home": "Home",
+    "shop": "Shop",
     "collections": "Collections",
     "concierge": "Find your flowers",
     "journal": "Journal",
-    "cart": "Cart"
+    "cart": "Cart",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
   },
   "home": {
     "studioTag": "nau.fleur · Da Nang",
@@ -16,10 +19,63 @@
     "heroSubtitle": "Thoughtful bouquets by feeling — hand-delivered across Da Nang.",
     "ctaConcierge": "Find your flowers",
     "ctaCollections": "Browse collections",
+    "ctaShop": "Shop all flowers",
+    "occasionsEyebrow": "Occasions",
+    "occasionsTitle": "Shop by moment",
+    "occasionsBrowse": "Browse →",
+    "occasions": {
+      "birthday": "Birthday",
+      "thanks": "Thank you",
+      "love": "Just because",
+      "sorry": "I'm sorry",
+      "miss": "Missing you"
+    },
     "emotionalTitle": "Flowers as a feeling",
+    "emotionalDesc": "Each collection holds a mood — pick the story first, the bouquet second.",
+    "viewAllCollections": "All collections",
+    "seasonalTitle": "Seasonal blooms",
+    "seasonalDesc": "Fresh flowers in rhythm with the season.",
+    "signatureTitle": "Studio signatures",
+    "signatureDesc": "Distinctive nau.fleur designs.",
     "featuredTitle": "Featured bouquets",
+    "customEyebrow": "Custom design",
+    "customTitle": "A bouquet that's yours",
+    "customBody": "Chat with our AI Florist, explore reference concepts, and submit a request — the studio confirms pricing before checkout.",
+    "customCta": "Start designing",
+    "testimonialsTitle": "Kind words",
+    "testimonials": {
+      "one": {
+        "quote": "More beautiful than the photos, delivered on time near My Khe — they were moved.",
+        "name": "Lan · Son Tra"
+      },
+      "two": {
+        "quote": "I didn't know what to pick; Concierge matched my budget and the feeling.",
+        "name": "Minh · Hai Chau"
+      },
+      "three": {
+        "quote": "The card and wrapping feel like a studio, not a generic web shop.",
+        "name": "Huong · Ngu Hanh Son"
+      }
+    },
     "storyTitle": "The nau.fleur story",
     "storyBody": "Beautiful flowers, wrapped with care — from Dragon Bridge to My Khe Beach. Weddings, birthdays, or just because."
+  },
+  "shop": {
+    "title": "Flower shop",
+    "subtitle": "Browse the live catalog — filter by collection, feeling, and budget.",
+    "search": "Search",
+    "searchPlaceholder": "Bouquet name, mood…",
+    "sort": "Sort",
+    "sortName": "Name A–Z",
+    "sortPriceAsc": "Price low → high",
+    "sortPriceDesc": "Price high → low",
+    "filterCollection": "Collection",
+    "filterFeeling": "Feeling",
+    "all": "All",
+    "resultCount": "{count} products",
+    "empty": "No products match. Try clearing filters.",
+    "prev": "Previous",
+    "next": "Next"
   },
   "collections": {
     "title": "Collections",
@@ -29,8 +85,11 @@
     "title": "Cart",
     "empty": "Your cart is empty.",
     "explore": "Browse collections",
+    "exploreShop": "Browse the shop",
     "subtotal": "Subtotal",
-    "checkout": "Checkout"
+    "checkout": "Checkout",
+    "deliveryNote": "Delivery fee calculated at checkout",
+    "continueShopping": "Continue shopping"
   },
   "journal": {
     "title": "Journal & stories",
@@ -99,12 +158,19 @@
     "districts": "Hai Chau · Son Tra · Ngu Hanh Son · Thanh Khe · Cam Le · Lien Chieu · Hoa Vang",
     "copyright": "© {year} nau.fleur",
     "instagram": "Follow nau.fleur on Instagram",
-    "facebook": "Follow Nâu Fleur on Facebook"
+    "facebook": "Follow Nâu Fleur on Facebook",
+    "explore": "Explore",
+    "service": "Service",
+    "deliveryNote": "Da Nang city delivery · choose a time slot at checkout",
+    "hours": "Online orders 8:00–20:00 daily"
   },
   "product": {
     "from": "From",
     "addToCart": "Add to cart",
     "addedToCart": "Added to cart",
+    "studioPiece": "Studio piece",
+    "chooseSize": "Choose size",
+    "stockLeft": "{count} left",
     "availability": {
       "available": "In stock",
       "limited": "Limited",

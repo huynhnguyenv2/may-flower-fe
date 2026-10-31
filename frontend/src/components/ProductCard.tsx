@@ -20,7 +20,7 @@ export function ProductCard({
     <Reveal delay={revealDelay}>
       <Link
         href={`/products/${product.slug}`}
-        className="group block overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-black/5 transition duration-500 hover:-translate-y-0.5 hover:shadow-md"
+        className="group block overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5 transition duration-500 hover:-translate-y-1 hover:shadow-lg"
       >
         <div className="relative aspect-[4/5] bg-paper">
           {product.imageUrl ? (

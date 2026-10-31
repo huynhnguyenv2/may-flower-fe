@@ -74,6 +74,24 @@ export async function getFeaturedProducts(): Promise<ProductSummary[]> {
   return json.data.map((d) => wrap(productSummarySchema, d));
 }
 
+export type ProductListFilters = {
+  collection?: string;
+  feeling?: string;
+  minPrice?: string;
+  maxPrice?: string;
+};
+
+export async function listProducts(filters: ProductListFilters = {}): Promise<ProductSummary[]> {
+  const params = new URLSearchParams();
+  if (filters.collection) params.set("collection", filters.collection);
+  if (filters.feeling) params.set("feeling", filters.feeling);
+  if (filters.minPrice) params.set("minPrice", filters.minPrice);
+  if (filters.maxPrice) params.set("maxPrice", filters.maxPrice);
+  const qs = params.toString();
+  const json = await fetchJson<{ data: unknown[] }>(`/products${qs ? `?${qs}` : ""}`);
+  return json.data.map((d) => wrap(productSummarySchema, d));
+}
+
 export async function getProduct(slug: string): Promise<ProductDetail> {
   const json = await fetchJson<{ data: unknown }>(`/products/${slug}`);
   return wrap(productDetailSchema, json.data);
