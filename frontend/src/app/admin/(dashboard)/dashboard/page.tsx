@@ -75,7 +75,11 @@ export default function AdminDashboardPage() {
               renderItem={(o) => (
                 <List.Item
                   actions={[
-                    <Link key="go" href={`/admin/orders/show/${o.id}`}>
+                    <Link
+                      key="go"
+                      href={`/admin/orders/show/${o.id}`}
+                      className="inline-flex min-h-[44px] items-center px-2"
+                    >
                       Chi tiết
                     </Link>,
                   ]}

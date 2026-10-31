@@ -45,7 +45,11 @@ export default function AdminCustomerShowPage() {
               renderItem={(o) => (
                 <List.Item
                   actions={[
-                    <a key="v" onClick={() => show("orders", o.id)}>
+                    <a
+                      key="v"
+                      className="inline-flex min-h-[44px] items-center px-2"
+                      onClick={() => show("orders", o.id)}
+                    >
                       Xem
                     </a>,
                   ]}
@@ -70,7 +74,11 @@ export default function AdminCustomerShowPage() {
               renderItem={(r) => (
                 <List.Item
                   actions={[
-                    <a key="v" onClick={() => show("custom-order-requests", r.id)}>
+                    <a
+                      key="v"
+                      className="inline-flex min-h-[44px] items-center px-2"
+                      onClick={() => show("custom-order-requests", r.id)}
+                    >
                       Xem
                     </a>,
                   ]}

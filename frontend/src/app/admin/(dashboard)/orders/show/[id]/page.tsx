@@ -2,7 +2,8 @@
 
 import { Show } from "@refinedev/antd";
 import { useShow, useUpdate } from "@refinedev/core";
-import { Card, Col, Descriptions, Row, Select, Table, Timeline, Typography } from "antd";
+import { Card, Col, Descriptions, Row, Select, Timeline, Typography } from "antd";
+import { OrderLineItems } from "@/admin/components/OrderLineItems";
 import Link from "next/link";
 import { ORDER_STATUS, OrderStatusTag } from "@/admin/components/StatusTags";
 import { formatDateTime, formatVnd } from "@/admin/format";
@@ -72,7 +73,8 @@ export default function AdminOrderShowPage() {
               <div className="mt-4">
                 <Typography.Text type="secondary">Chuyển trạng thái</Typography.Text>
                 <Select
-                  className="mt-1 block max-w-xs"
+                  className="mt-1 block w-full max-w-xs"
+                  size="large"
                   value={record.status}
                   options={STATUS_OPTIONS}
                   loading={mutation.isPending}
@@ -84,27 +86,7 @@ export default function AdminOrderShowPage() {
             </Card>
 
             <Card title="Sản phẩm / cấu hình">
-              <Table
-                rowKey="id"
-                pagination={false}
-                size="small"
-                dataSource={record.items}
-                columns={[
-                  { title: "Sản phẩm", dataIndex: "productName" },
-                  { title: "Biến thể", dataIndex: "variantLabel", width: 100 },
-                  { title: "SL", dataIndex: "quantity", width: 60 },
-                  {
-                    title: "Đơn giá",
-                    dataIndex: "unitPriceVnd",
-                    render: (v: string) => formatVnd(v),
-                  },
-                  {
-                    title: "Thành tiền",
-                    dataIndex: "lineTotalVnd",
-                    render: (v: string) => formatVnd(v),
-                  },
-                ]}
-              />
+              <OrderLineItems items={record.items} />
             </Card>
           </Col>
 

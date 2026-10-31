@@ -2,7 +2,17 @@
 
 import { List, useTable } from "@refinedev/antd";
 import { useNavigation } from "@refinedev/core";
-import { Space, Table, Tag } from "antd";
+import { Tag } from "antd";
+import { ResponsiveTable } from "@/admin/components/ResponsiveTable";
+import { formatDateTime } from "@/admin/format";
+
+type SessionRow = {
+  id: string;
+  locale: string;
+  messageCount: number;
+  lastMessage?: { role: string; content: string } | null;
+  createdAt: string;
+};
 
 export default function AdminSupportSessionsPage() {
   const { show } = useNavigation();
@@ -12,58 +22,51 @@ export default function AdminSupportSessionsPage() {
 
   return (
     <List title="Chat khách (AI support)">
-      <Table
-        {...tableProps}
+      <ResponsiveTable<SessionRow>
+        tableProps={tableProps}
         rowKey="id"
-        size="middle"
-        onRow={(record) => ({
-          onClick: () => show("support-sessions", record.id as string),
-          style: { cursor: "pointer" },
-        })}
-      >
-        <Table.Column dataIndex="id" title="Session" width={220} ellipsis />
-        <Table.Column
-          dataIndex="locale"
-          title="Ngôn ngữ"
-          width={90}
-          render={(v: string) => <Tag>{v.toUpperCase()}</Tag>}
-        />
-        <Table.Column dataIndex="messageCount" title="Tin nhắn" width={90} />
-        <Table.Column
-          title="Tin cuối"
-          render={(_: unknown, row: { lastMessage?: { role: string; content: string } | null }) =>
-            row.lastMessage ? (
-              <span className="text-ink/80">
-                <Tag>{row.lastMessage.role}</Tag> {row.lastMessage.content}
-              </span>
-            ) : (
-              "—"
-            )
-          }
-        />
-        <Table.Column
-          dataIndex="createdAt"
-          title="Bắt đầu"
-          width={170}
-          render={(v: string) => new Date(v).toLocaleString("vi-VN")}
-        />
-        <Table.Column
-          title=""
-          width={100}
-          render={(_: unknown, record: { id: string }) => (
-            <Space>
-              <a
-                onClick={(e) => {
-                  e.stopPropagation();
-                  show("support-sessions", record.id);
-                }}
-              >
-                Xem
-              </a>
-            </Space>
-          )}
-        />
-      </Table>
+        onRowClick={(record) => show("support-sessions", record.id)}
+        columns={[
+          {
+            key: "id",
+            title: "Session",
+            dataIndex: "id",
+            width: 220,
+            primary: true,
+            render: (v) => (
+              <span className="break-all font-mono text-xs">{v as string}</span>
+            ),
+          },
+          {
+            key: "locale",
+            title: "Ngôn ngữ",
+            dataIndex: "locale",
+            width: 90,
+            secondary: true,
+            render: (v) => <Tag>{(v as string).toUpperCase()}</Tag>,
+          },
+          { key: "messageCount", title: "Tin nhắn", dataIndex: "messageCount", width: 90 },
+          {
+            key: "lastMessage",
+            title: "Tin cuối",
+            render: (_, row) =>
+              row.lastMessage ? (
+                <span className="line-clamp-2 text-ink/80">
+                  <Tag>{row.lastMessage.role}</Tag> {row.lastMessage.content}
+                </span>
+              ) : (
+                "—"
+              ),
+          },
+          {
+            key: "createdAt",
+            title: "Bắt đầu",
+            dataIndex: "createdAt",
+            width: 170,
+            render: (v) => formatDateTime(v as string),
+          },
+        ]}
+      />
     </List>
   );
 }

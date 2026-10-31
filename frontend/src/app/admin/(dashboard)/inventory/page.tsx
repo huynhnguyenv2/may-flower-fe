@@ -1,26 +1,51 @@
 "use client";
 
 import { List, useTable } from "@refinedev/antd";
-import { Tag, Table } from "antd";
+import { Tag } from "antd";
+import { ResponsiveTable } from "@/admin/components/ResponsiveTable";
+
+type InventoryRow = {
+  variantId: string;
+  productName: string;
+  sku: string;
+  sizeLabel: string;
+  availableQuantity: number;
+};
 
 export default function AdminInventoryPage() {
   const { tableProps } = useTable({ resource: "inventory" });
 
   return (
     <List title="Tồn kho — cảnh báo thấp">
-      <Table {...tableProps} rowKey="variantId" size="middle">
-        <Table.Column dataIndex="productName" title="Sản phẩm" />
-        <Table.Column dataIndex="sku" title="SKU" width={100} />
-        <Table.Column dataIndex="sizeLabel" title="Size" width={90} />
-        <Table.Column
-          dataIndex="availableQuantity"
-          title="Còn lại"
-          width={100}
-          render={(q: number) => (
-            <Tag color={q <= 1 ? "red" : q <= 3 ? "gold" : "green"}>{q}</Tag>
-          )}
-        />
-      </Table>
+      <ResponsiveTable<InventoryRow>
+        tableProps={tableProps}
+        rowKey="variantId"
+        columns={[
+          { key: "productName", title: "Sản phẩm", dataIndex: "productName", primary: true },
+          {
+            key: "sizeLabel",
+            title: "Size",
+            dataIndex: "sizeLabel",
+            width: 90,
+            secondary: true,
+          },
+          { key: "sku", title: "SKU", dataIndex: "sku", width: 100 },
+          {
+            key: "availableQuantity",
+            title: "Còn lại",
+            dataIndex: "availableQuantity",
+            width: 100,
+            render: (q) => {
+              const quantity = q as number;
+              return (
+                <Tag color={quantity <= 1 ? "red" : quantity <= 3 ? "gold" : "green"}>
+                  {quantity}
+                </Tag>
+              );
+            },
+          },
+        ]}
+      />
     </List>
   );
 }

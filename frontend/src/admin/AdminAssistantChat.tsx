@@ -60,15 +60,15 @@ export function AdminAssistantChat() {
   }
 
   return (
-    <div className="mx-auto flex max-w-3xl flex-col gap-4">
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
       {stats ? (
-        <Typography.Text type="secondary">
+        <Typography.Text type="secondary" className="text-sm leading-relaxed">
           Hôm nay: {stats.ordersToday} đơn · chờ TT: {stats.pendingPayment} · doanh thu{" "}
           {stats.revenueTodayVnd} VND
         </Typography.Text>
       ) : null}
 
-      <div className="max-h-[55vh] space-y-3 overflow-y-auto rounded-lg border border-neutral-200 bg-white p-4">
+      <div className="max-h-[min(55vh,420px)] space-y-3 overflow-y-auto rounded-lg border border-neutral-200 bg-white p-3 sm:p-4">
         {lines.map((line, i) => (
           <Card
             key={`${line.role}-${i}`}
@@ -76,7 +76,7 @@ export function AdminAssistantChat() {
             type={line.role === "user" ? "inner" : undefined}
             title={line.role === "user" ? "Bạn" : "Trợ lý"}
           >
-            <Typography.Paragraph className="mb-0 whitespace-pre-wrap">
+            <Typography.Paragraph className="mb-0 whitespace-pre-wrap text-[15px]">
               {line.content}
             </Typography.Paragraph>
           </Card>
@@ -85,12 +85,13 @@ export function AdminAssistantChat() {
         <div ref={bottomRef} />
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-end">
         <Input.TextArea
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Hỏi trợ lý (vd: còn bao nhiêu đơn chờ thanh toán?)"
           autoSize={{ minRows: 2, maxRows: 4 }}
+          className="!text-base"
           onPressEnter={(e) => {
             if (!e.shiftKey) {
               e.preventDefault();
@@ -98,7 +99,13 @@ export function AdminAssistantChat() {
             }
           }}
         />
-        <Button type="primary" onClick={() => void send()} disabled={loading || !input.trim()}>
+        <Button
+          type="primary"
+          className="!min-h-[44px] sm:!min-w-[88px]"
+          block
+          onClick={() => void send()}
+          disabled={loading || !input.trim()}
+        >
           Gửi
         </Button>
       </div>

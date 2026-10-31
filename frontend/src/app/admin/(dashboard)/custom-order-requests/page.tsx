@@ -2,9 +2,19 @@
 
 import { List, useTable } from "@refinedev/antd";
 import { useNavigation } from "@refinedev/core";
-import { Space, Table } from "antd";
+import { ResponsiveTable } from "@/admin/components/ResponsiveTable";
 import { CustomRequestStatusTag } from "@/admin/components/StatusTags";
-import { formatVnd } from "@/admin/format";
+import { formatDateTime, formatVnd } from "@/admin/format";
+
+type RequestRow = {
+  id: string;
+  requestNumber: string;
+  status: string;
+  customerName: string;
+  customerPhone: string;
+  totalVnd: string;
+  createdAt: string;
+};
 
 export default function AdminCustomOrderRequestsPage() {
   const { show } = useNavigation();
@@ -14,53 +24,44 @@ export default function AdminCustomOrderRequestsPage() {
 
   return (
     <List title="Yêu cầu AI Florist">
-      <Table
-        {...tableProps}
+      <ResponsiveTable<RequestRow>
+        tableProps={tableProps}
         rowKey="id"
-        size="middle"
-        onRow={(record) => ({
-          onClick: () => show("custom-order-requests", record.id as string),
-          style: { cursor: "pointer" },
-        })}
-      >
-        <Table.Column dataIndex="requestNumber" title="Mã YC" width={140} />
-        <Table.Column
-          dataIndex="status"
-          title="Trạng thái"
-          width={140}
-          render={(v: string) => <CustomRequestStatusTag status={v} />}
-        />
-        <Table.Column dataIndex="customerName" title="Khách" />
-        <Table.Column dataIndex="customerPhone" title="SĐT" width={120} />
-        <Table.Column
-          dataIndex="totalVnd"
-          title="Tổng ước tính"
-          width={130}
-          render={(v: string) => formatVnd(v)}
-        />
-        <Table.Column
-          dataIndex="createdAt"
-          title="Ngày gửi"
-          width={170}
-          render={(v: string) => new Date(v).toLocaleString("vi-VN")}
-        />
-        <Table.Column
-          title=""
-          width={80}
-          render={(_: unknown, record: { id: string }) => (
-            <Space>
-              <a
-                onClick={(e) => {
-                  e.stopPropagation();
-                  show("custom-order-requests", record.id);
-                }}
-              >
-                Xem
-              </a>
-            </Space>
-          )}
-        />
-      </Table>
+        onRowClick={(record) => show("custom-order-requests", record.id)}
+        columns={[
+          {
+            key: "requestNumber",
+            title: "Mã YC",
+            dataIndex: "requestNumber",
+            primary: true,
+            width: 140,
+          },
+          {
+            key: "status",
+            title: "Trạng thái",
+            dataIndex: "status",
+            width: 140,
+            secondary: true,
+            render: (v) => <CustomRequestStatusTag status={v as string} />,
+          },
+          { key: "customerName", title: "Khách", dataIndex: "customerName" },
+          { key: "customerPhone", title: "SĐT", dataIndex: "customerPhone", width: 120 },
+          {
+            key: "totalVnd",
+            title: "Tổng ước tính",
+            dataIndex: "totalVnd",
+            width: 130,
+            render: (v) => formatVnd(v as string),
+          },
+          {
+            key: "createdAt",
+            title: "Ngày gửi",
+            dataIndex: "createdAt",
+            width: 170,
+            render: (v) => formatDateTime(v as string),
+          },
+        ]}
+      />
     </List>
   );
 }

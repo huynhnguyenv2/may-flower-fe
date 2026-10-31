@@ -34,5 +34,9 @@ export const adminTheme: ThemeConfig = {
     Card: {
       paddingLG: 20,
     },
+    Button: {
+      controlHeight: 40,
+      controlHeightLG: 44,
+    },
   },
 };

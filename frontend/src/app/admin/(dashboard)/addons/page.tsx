@@ -2,8 +2,18 @@
 
 import { CreateButton, List, useTable } from "@refinedev/antd";
 import { useNavigation } from "@refinedev/core";
-import { Switch, Table, Tag } from "antd";
+import { Switch, Tag } from "antd";
+import { ResponsiveTable } from "@/admin/components/ResponsiveTable";
 import { formatVnd } from "@/admin/format";
+
+type AddonRow = {
+  id: string;
+  name: string;
+  category: string;
+  priceVnd: string;
+  occasionTags: string[];
+  active: boolean;
+};
 
 export default function AdminAddonsPage() {
   const { edit } = useNavigation();
@@ -11,34 +21,36 @@ export default function AdminAddonsPage() {
 
   return (
     <List title="Add-on" headerButtons={() => <CreateButton />}>
-      <Table
-        {...tableProps}
+      <ResponsiveTable<AddonRow>
+        tableProps={tableProps}
         rowKey="id"
-        onRow={(record) => ({
-          onClick: () => edit("addons", record.id as string),
-          style: { cursor: "pointer" },
-        })}
-      >
-        <Table.Column dataIndex="name" title="Tên" />
-        <Table.Column dataIndex="category" title="Nhóm" width={120} />
-        <Table.Column
-          dataIndex="priceVnd"
-          title="Giá"
-          width={120}
-          render={(v: string) => formatVnd(v)}
-        />
-        <Table.Column
-          dataIndex="occasionTags"
-          title="Dịp"
-          render={(tags: string[]) => tags?.slice(0, 3).map((t) => <Tag key={t}>{t}</Tag>)}
-        />
-        <Table.Column
-          dataIndex="active"
-          title="Active"
-          width={90}
-          render={(v: boolean) => <Switch checked={v} disabled size="small" />}
-        />
-      </Table>
+        onRowClick={(record) => edit("addons", record.id)}
+        columns={[
+          { key: "name", title: "Tên", dataIndex: "name", primary: true },
+          { key: "category", title: "Nhóm", dataIndex: "category", width: 120, secondary: true },
+          {
+            key: "priceVnd",
+            title: "Giá",
+            dataIndex: "priceVnd",
+            width: 120,
+            render: (v) => formatVnd(v as string),
+          },
+          {
+            key: "occasionTags",
+            title: "Dịp",
+            dataIndex: "occasionTags",
+            render: (tags) =>
+              (tags as string[])?.slice(0, 3).map((t) => <Tag key={t}>{t}</Tag>),
+          },
+          {
+            key: "active",
+            title: "Active",
+            dataIndex: "active",
+            width: 90,
+            render: (v) => <Switch checked={v as boolean} disabled size="small" />,
+          },
+        ]}
+      />
     </List>
   );
 }

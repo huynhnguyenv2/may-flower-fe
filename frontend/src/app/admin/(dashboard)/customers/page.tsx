@@ -2,7 +2,16 @@
 
 import { List, useTable } from "@refinedev/antd";
 import { useNavigation } from "@refinedev/core";
-import { Table } from "antd";
+import { ResponsiveTable } from "@/admin/components/ResponsiveTable";
+
+type CustomerRow = {
+  id: string;
+  name: string;
+  phone: string;
+  email?: string | null;
+  orderCount: number;
+  customRequestCount: number;
+};
 
 export default function AdminCustomersPage() {
   const { show } = useNavigation();
@@ -10,20 +19,18 @@ export default function AdminCustomersPage() {
 
   return (
     <List title="Khách hàng">
-      <Table
-        {...tableProps}
+      <ResponsiveTable<CustomerRow>
+        tableProps={tableProps}
         rowKey="id"
-        onRow={(record) => ({
-          onClick: () => show("customers", record.id as string),
-          style: { cursor: "pointer" },
-        })}
-      >
-        <Table.Column dataIndex="name" title="Tên" />
-        <Table.Column dataIndex="phone" title="SĐT" width={130} />
-        <Table.Column dataIndex="email" title="Email" />
-        <Table.Column dataIndex="orderCount" title="Đơn" width={80} />
-        <Table.Column dataIndex="customRequestCount" title="YC AI" width={80} />
-      </Table>
+        onRowClick={(record) => show("customers", record.id)}
+        columns={[
+          { key: "name", title: "Tên", dataIndex: "name", primary: true },
+          { key: "phone", title: "SĐT", dataIndex: "phone", width: 130, secondary: true },
+          { key: "email", title: "Email", dataIndex: "email" },
+          { key: "orderCount", title: "Đơn", dataIndex: "orderCount", width: 80 },
+          { key: "customRequestCount", title: "YC AI", dataIndex: "customRequestCount", width: 80 },
+        ]}
+      />
     </List>
   );
 }

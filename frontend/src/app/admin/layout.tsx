@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "@refinedev/antd/dist/reset.css";
+import "@/admin/styles/admin-mobile.css";
 import { RefineRoot } from "@/admin/RefineRoot";
 
 export const dynamic = "force-dynamic";
